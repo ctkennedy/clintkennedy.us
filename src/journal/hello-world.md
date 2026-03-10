@@ -1,5 +1,5 @@
 ---
-title: Hello, World
+title: Hello world!
 date: 2026-03-10
 description: First entry in the journal. Why I built this site and what I plan to do with it.
 ---
