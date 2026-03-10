@@ -1,7 +1,7 @@
 ---
 title: The Case for Open Web Publishing
 date: 2026-03-10
-description: Why personal websites with RSS and federation matter more than ever.
+description: Why personal websites with RSS and federation matter more than ever.....
 ---
 
 Every few years someone declares the personal website dead. And every few years, the platforms that were supposed to replace them either enshittify, get acquired, or disappear entirely.
