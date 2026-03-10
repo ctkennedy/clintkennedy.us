@@ -1,0 +1,28 @@
+---
+permalink: /.well-known/webfinger
+eleventyExcludeFromCollections: true
+eleventyAllowMissingExtension: true
+---
+{
+  "subject": "acct:clint@www.clintkennedy.us",
+  "aliases": [
+    "https://www.clintkennedy.us/"
+  ],
+  "links": [
+    {
+      "rel": "http://webfinger.net/rel/profile-page",
+      "type": "text/html",
+      "href": "https://www.clintkennedy.us/"
+    },
+    {
+      "rel": "self",
+      "type": "application/activity+json",
+      "href": "https://www.clintkennedy.us/activitypub/actor.json"
+    },
+    {
+      "rel": "http://schemas.google.com/g/2010#updates-from",
+      "type": "application/atom+xml",
+      "href": "https://www.clintkennedy.us/journal/feed.xml"
+    }
+  ]
+}

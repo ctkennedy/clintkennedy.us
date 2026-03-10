@@ -1,0 +1,47 @@
+[build]
+  command = "npm run build"
+  publish = "_site"
+
+# Redirect bare domain to www
+[[redirects]]
+  from = "https://clintkennedy.us/*"
+  to = "https://www.clintkennedy.us/:splat"
+  status = 301
+  force = true
+
+# Headers for feeds and ActivityPub
+[[headers]]
+  for = "/.well-known/*"
+  [headers.values]
+    Content-Type = "application/jrd+json"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/activitypub/*.json"
+  [headers.values]
+    Content-Type = "application/activity+json"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/*/feed.xml"
+  [headers.values]
+    Content-Type = "application/atom+xml; charset=utf-8"
+
+[[headers]]
+  for = "/*/feed.json"
+  [headers.values]
+    Content-Type = "application/feed+json; charset=utf-8"
+
+# Cache static assets
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

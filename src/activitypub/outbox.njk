@@ -1,0 +1,44 @@
+---
+permalink: /activitypub/outbox.json
+eleventyExcludeFromCollections: true
+---
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "id": "https://www.clintkennedy.us/activitypub/outbox.json",
+  "type": "OrderedCollection",
+  "totalItems": {{ collections.journal.length + collections.ideas.length }},
+  "orderedItems": [
+    {% for post in collections.journal %}
+    {
+      "type": "Create",
+      "actor": "https://www.clintkennedy.us/activitypub/actor.json",
+      "published": "{{ post.date | isoDate }}",
+      "object": {
+        "type": "Article",
+        "id": "https://www.clintkennedy.us{{ post.url }}",
+        "url": "https://www.clintkennedy.us{{ post.url }}",
+        "name": "{{ post.data.title }}",
+        "content": "{{ post.content | excerpt }}",
+        "published": "{{ post.date | isoDate }}",
+        "attributedTo": "https://www.clintkennedy.us/activitypub/actor.json"
+      }
+    }{% if not loop.last or collections.ideas.length > 0 %},{% endif %}
+    {% endfor %}
+    {% for post in collections.ideas %}
+    {
+      "type": "Create",
+      "actor": "https://www.clintkennedy.us/activitypub/actor.json",
+      "published": "{{ post.date | isoDate }}",
+      "object": {
+        "type": "Note",
+        "id": "https://www.clintkennedy.us{{ post.url }}",
+        "url": "https://www.clintkennedy.us{{ post.url }}",
+        "name": "{{ post.data.title }}",
+        "content": "{{ post.content | excerpt }}",
+        "published": "{{ post.date | isoDate }}",
+        "attributedTo": "https://www.clintkennedy.us/activitypub/actor.json"
+      }
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}

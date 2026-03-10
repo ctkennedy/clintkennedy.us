@@ -1,0 +1,35 @@
+---
+permalink: /activitypub/actor.json
+eleventyExcludeFromCollections: true
+---
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/security/v1"
+  ],
+  "id": "https://www.clintkennedy.us/activitypub/actor.json",
+  "type": "Person",
+  "preferredUsername": "clint",
+  "name": "Clint Kennedy",
+  "summary": "Builder, thinker, writer. Personal site at clintkennedy.us.",
+  "url": "https://www.clintkennedy.us/",
+  "inbox": "https://www.clintkennedy.us/activitypub/inbox",
+  "outbox": "https://www.clintkennedy.us/activitypub/outbox.json",
+  "followers": "https://www.clintkennedy.us/activitypub/followers",
+  "following": "https://www.clintkennedy.us/activitypub/following",
+  "endpoints": {
+    "sharedInbox": "https://www.clintkennedy.us/activitypub/inbox"
+  },
+  "icon": {
+    "type": "Image",
+    "mediaType": "image/png",
+    "url": "https://www.clintkennedy.us/static/avatar.png"
+  },
+  "attachment": [
+    {
+      "type": "PropertyValue",
+      "name": "Website",
+      "value": "<a href=\"https://www.clintkennedy.us\" rel=\"me\">clintkennedy.us</a>"
+    }
+  ]
+}

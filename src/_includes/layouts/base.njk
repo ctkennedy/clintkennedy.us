@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if title %}{{ title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <meta name="author" content="{{ site.author.name }}">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ title or site.title }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:type" content="{% if layout == 'layouts/post.njk' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+
+  <!-- Feeds -->
+  <link rel="alternate" type="application/atom+xml" title="Journal Feed" href="/journal/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Ideas Feed" href="/ideas/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Projects Feed" href="/projects/feed.xml">
+  <link rel="alternate" type="application/json" title="Journal (JSON)" href="/journal/feed.json">
+  <link rel="alternate" type="application/json" title="Ideas (JSON)" href="/ideas/feed.json">
+  <link rel="alternate" type="application/json" title="Projects (JSON)" href="/projects/feed.json">
+
+  <!-- ActivityPub / WebFinger -->
+  <link rel="webmention" href="{{ site.url }}/webmention">
+  <link rel="me" href="mailto:{{ site.author.email }}">
+
+  <!-- IndieWeb -->
+  <link rel="author" href="{{ site.url }}/">
+
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <!-- Hidden h-card for IndieWeb discovery -->
+  <div class="h-card" style="display:none;">
+    <a class="p-name u-url" rel="me" href="{{ site.url }}">{{ site.author.name }}</a>
+    <a class="u-email" href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+  </div>
+
+  <header class="site-header">
+    <a href="/" class="site-title">{{ site.title }}</a>
+    <nav class="site-nav" role="navigation" aria-label="Main">
+      <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>home</a>
+      <a href="/journal/"{% if page.url.startsWith("/journal") %} class="active"{% endif %}>journal</a>
+      <a href="/ideas/"{% if page.url.startsWith("/ideas") %} class="active"{% endif %}>ideas</a>
+      <a href="/projects/"{% if page.url.startsWith("/projects") %} class="active"{% endif %}>projects</a>
+    </nav>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; {{ site.author.name }}. All rights reserved.</p>
+    <div class="footer-feeds">
+      <a href="/journal/feed.xml">journal rss</a>
+      <a href="/ideas/feed.xml">ideas rss</a>
+      <a href="/projects/feed.xml">projects rss</a>
+      <a href="/journal/feed.json">json feed</a>
+    </div>
+  </footer>
+
+</body>
+</html>

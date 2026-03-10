@@ -1,0 +1,26 @@
+---
+layout: layouts/base.njk
+title: Ideas
+description: Ideas and explorations from Clint Kennedy.
+permalink: /ideas/
+---
+<div class="section-header h-feed">
+  <h1 class="p-name">Ideas</h1>
+  <p class="p-summary">Half-formed thoughts, experiments, and things worth exploring.</p>
+  <div class="section-subscribe">
+    <a href="/ideas/feed.xml">Atom Feed</a>
+    <a href="/ideas/feed.json">JSON Feed</a>
+  </div>
+</div>
+
+<ul class="post-list">
+  {% for post in collections.ideas %}
+  <li class="h-entry">
+    <div class="post-title"><a class="u-url p-name" href="{{ post.url }}">{{ post.data.title }}</a></div>
+    <div class="post-meta">
+      <time class="dt-published" datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+    </div>
+    <div class="post-excerpt p-summary">{{ post.content | excerpt }}</div>
+  </li>
+  {% endfor %}
+</ul>

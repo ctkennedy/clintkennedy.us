@@ -1,0 +1,26 @@
+---
+layout: layouts/base.njk
+title: Journal
+description: Thoughts, reflections, and writing from Clint Kennedy.
+permalink: /journal/
+---
+<div class="section-header h-feed">
+  <h1 class="p-name">Journal</h1>
+  <p class="p-summary">Long-form writing, reflections, and things I've been thinking about.</p>
+  <div class="section-subscribe">
+    <a href="/journal/feed.xml">Atom Feed</a>
+    <a href="/journal/feed.json">JSON Feed</a>
+  </div>
+</div>
+
+<ul class="post-list">
+  {% for post in collections.journal %}
+  <li class="h-entry">
+    <div class="post-title"><a class="u-url p-name" href="{{ post.url }}">{{ post.data.title }}</a></div>
+    <div class="post-meta">
+      <time class="dt-published" datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+    </div>
+    <div class="post-excerpt p-summary">{{ post.content | excerpt }}</div>
+  </li>
+  {% endfor %}
+</ul>

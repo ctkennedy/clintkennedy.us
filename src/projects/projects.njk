@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+title: Projects
+description: Projects and builds from Clint Kennedy, deployed on Netlify.
+permalink: /projects/
+---
+<div class="section-header h-feed">
+  <h1 class="p-name">Projects</h1>
+  <p class="p-summary">Things I've built and shipped. Each project links to its live deployment on Netlify.</p>
+  <div class="section-subscribe">
+    <a href="/projects/feed.xml">Atom Feed</a>
+    <a href="/projects/feed.json">JSON Feed</a>
+  </div>
+</div>
+
+<ul class="post-list">
+  {% for post in collections.projects %}
+  <li class="h-entry">
+    <div class="post-title"><a class="u-url p-name" href="{{ post.url }}">{{ post.data.title }}</a></div>
+    <div class="post-meta">
+      {{ post.data.status or "Active" }}
+      &middot;
+      <time class="dt-published" datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+    </div>
+    <div class="post-excerpt p-summary">{{ post.content | excerpt }}</div>
+    {% if post.data.netlify_url %}
+      <a class="project-link" href="{{ post.data.netlify_url }}">View live on Netlify</a>
+    {% endif %}
+    {% if post.data.github_url %}
+      &middot;
+      <a class="project-link" href="{{ post.data.github_url }}">Source on GitHub</a>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,52 @@
+---
+layout: layouts/base.njk
+title: ""
+---
+<div class="home-intro">
+  <p>I'm Clint Kennedy. I build things on the web, think about technology, and write about what I learn along the way.</p>
+  <p>This site is my corner of the internet — a place for long-form writing, half-formed ideas, and the projects I'm working on. Everything here is available via <a href="/journal/feed.xml">RSS</a> and the open web.</p>
+</div>
+
+<section class="home-section">
+  <h2>Latest from the Journal</h2>
+  <ul class="post-list">
+    {% for post in collections.journal | head(3) %}
+    <li>
+      <div class="post-title"><a href="{{ post.url }}">{{ post.data.title }}</a></div>
+      <div class="post-meta">{{ post.date | readableDate }}</div>
+      <div class="post-excerpt">{{ post.content | excerpt }}</div>
+    </li>
+    {% endfor %}
+  </ul>
+  <p><a href="/journal/">All journal entries →</a></p>
+</section>
+
+<section class="home-section">
+  <h2>Recent Ideas</h2>
+  <ul class="post-list">
+    {% for post in collections.ideas | head(3) %}
+    <li>
+      <div class="post-title"><a href="{{ post.url }}">{{ post.data.title }}</a></div>
+      <div class="post-meta">{{ post.date | readableDate }}</div>
+      <div class="post-excerpt">{{ post.content | excerpt }}</div>
+    </li>
+    {% endfor %}
+  </ul>
+  <p><a href="/ideas/">All ideas →</a></p>
+</section>
+
+<section class="home-section">
+  <h2>Projects</h2>
+  <ul class="post-list">
+    {% for post in collections.projects | head(5) %}
+    <li>
+      <div class="post-title"><a href="{{ post.url }}">{{ post.data.title }}</a></div>
+      <div class="post-meta">{{ post.data.status or "Active" }}</div>
+      {% if post.data.netlify_url %}
+        <a class="project-link" href="{{ post.data.netlify_url }}">View live on Netlify</a>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  <p><a href="/projects/">All projects →</a></p>
+</section>
